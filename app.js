@@ -68,50 +68,50 @@ const addTask = function () {
 //Edit an existing task.
 
 const editTask = function () {
-  const listItem = this.parentNode;
+  const taskItem = this.parentNode;
 
-  const editInput = listItem.querySelector("input[type=text]");
-  const label = listItem.querySelector("label");
-  const editBtn = listItem.querySelector(".edit");
-  const containsClass = listItem.classList.contains("editMode");
+  const editInput = taskItem.querySelector("input[type=text]");
+  const label = taskItem.querySelector("label");
+  const editButton = taskItem.querySelector(".edit");
+  const containsClass = taskItem.classList.contains("editMode");
   //If class of the parent is .editmode
   if (containsClass) {
     //switch to .editmode
     //label becomes the inputs value.
     label.innerText = editInput.value;
-    editBtn.innerText = "Edit";
+    editButton.innerText = "Edit";
   } else {
     editInput.value = label.innerText;
-    editBtn.innerText = "Save";
+    editButton.innerText = "Save";
   }
 
   //toggle .editmode on the parent.
-  listItem.classList.toggle("editMode");
+  taskItem.classList.toggle("editMode");
 };
 
 //Delete task.
 const deleteTask = function () {
-  const listItem = this.parentNode;
-  const ul = listItem.parentNode;
+  const taskItem = this.parentNode;
+  const taskList = taskItem.parentNode;
   //Remove the parent list item from the ul.
-  ul.removeChild(listItem);
+  taskList.removeChild(taskItem);
 };
 
 //Mark task completed
 const taskCompleted = function () {
   //Append the task list item to the #completed-tasks
-  const listItem = this.parentNode;
-  completedTasksHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskIncomplete);
+  const taskItem = this.parentNode;
+  completedTasksHolder.appendChild(taskItem);
+  bindTaskEvents(taskItem, taskIncomplete);
 };
 
 const taskIncomplete = function () {
   //Mark task as incomplete.
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
-  const listItem = this.parentNode;
-  incompleteTaskHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
+  const taskItem = this.parentNode;
+  incompleteTaskHolder.appendChild(taskItem);
+  bindTaskEvents(taskItem, taskCompleted);
 };
 
 addButton.addEventListener("click", addTask);
